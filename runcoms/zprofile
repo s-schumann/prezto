@@ -41,11 +41,28 @@ typeset -gU cdpath fpath mailpath path
 #   $cdpath
 # )
 
+if [[ "$(hostname)" == 'mbp.home.schunet.org' ]]; then
+  export JAVA_HOME=`/usr/libexec/java_home`
+  export AWS_AUTO_SCALING_HOME="/usr/local/src/AutoScaling-1.0.61.2"
+fi
+
 # Set the list of directories that Zsh searches for programs.
-path=(
-  /usr/local/{bin,sbin}
-  $path
-)
+if [[ "$(hostname)" == 'mbp.home.schunet.org' ]]; then
+   path=(
+     /usr/local/{bin,sbin}
+     $HOME/.rvm/bin
+     /opt/bin
+     /usr/local/mysql/bin
+     $AWS_AUTO_SCALING_HOME/bin
+     /usr/local/src/ec2-api-tools-1.6.7.4/bin
+     $path
+   )
+else
+   path=(
+     /usr/local/{bin,sbin}
+     $path
+   )
+fi
 
 #
 # Less
@@ -72,3 +89,8 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+if [[ "$(hostname)" == 'mbp.home.schunet.org' ]]; then
+  source ~/.rvm/scripts/rvm
+fi
+

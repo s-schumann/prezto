@@ -11,3 +11,21 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+bindkey "^R" history-incremental-search-backward
+
+if [[ "$(hostname)" == 'mbp.home.schunet.org' ]]; then
+   alias mysql.start="sudo /usr/local/mysql/support-files/mysql.server start"
+   alias mysql.stop="sudo /usr/local/mysql/support-files/mysql.server stop"
+   alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+   alias apache.start="sudo apachectl start"
+   alias apache.stop="sudo apachectl stop"
+   alias mongo.start="sudo mongod --fork --syslog"
+   alias gsutil="/usr/local/src/gsutil/gsutil"
+   alias sshdb="ssh -L 10000:localhost:3306"
+
+   # tmux
+   alias tma='tmux attach -d -t'
+   alias tmn='tmux new -s $(basename $(pwd))'
+   alias tml='tmux list-sessions'
+fi
