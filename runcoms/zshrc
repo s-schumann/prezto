@@ -29,3 +29,6 @@ if [[ "$(hostname)" == 'mbp.home.schunet.org' ]]; then
    alias tmn='tmux new -s $(basename $(pwd))'
    alias tml='tmux list-sessions'
 fi
+
+setopt nosharehistory
+
